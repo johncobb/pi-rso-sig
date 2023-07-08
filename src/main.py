@@ -105,7 +105,7 @@ def play_file(file_name):
     """ release the device. """
     audio_src.terminate()
 
-def play_tone(digits, device_index=None):
+def dial_tone(digits, device_index=None):
 
     """ open the soundcard (device). """
     audio_src = open_device()
@@ -123,9 +123,21 @@ def play_tone(digits, device_index=None):
 
 
 def main():
-    play_tone("8128675309")
-    # play_file("dtmf.wav", 6)
+    # play_tone("8128675309")
+    # return
+    """ open the soundcard (device). """
+    # audio_src = open_device()
+
+    while True:
+        reply = input(">> ")
+        if reply == "exit" or reply == "EXIT":
+            break
+        if reply == "dial":
+            dial_tone("8128675309")
+        if reply == "play":
+            play_file("dtmf.wav")
+
 
 if __name__ == "__main__":
+    print("Welcome to Pi-RSO-Sig\n - Enter dial or play.\n - Enter exit to terminate program.")
     main()
-    print("running soundcard file.")
